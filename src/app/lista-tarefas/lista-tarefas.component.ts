@@ -7,6 +7,11 @@ import { Tarefa } from '../interface/tarefa';
 import { state, style, trigger } from '@angular/animations';
 import { filter } from 'rxjs';
 
+//         Animando o card
+// Utilizar o método Trigger para engatilhar as animações;
+// Configurar o Trigger com os States;
+// Definir o Style para cada State de animação;
+// Integrar o Trigger ao Template com o auxílio do property binding.
 @Component({
   selector: 'app-lista-tarefas',
   templateUrl: './lista-tarefas.component.html',
