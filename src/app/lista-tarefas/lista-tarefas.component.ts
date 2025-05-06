@@ -4,37 +4,20 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { TarefaService } from 'src/app/service/tarefa.service';
 import { Tarefa } from '../interface/tarefa';
-import { state, style, trigger } from '@angular/animations';
-import { filter } from 'rxjs';
 
-//         Animando o card
-// Utilizar o método Trigger para engatilhar as animações;
-// Configurar o Trigger com os States;
-// Definir o Style para cada State de animação;
-// Integrar o Trigger ao Template com o auxílio do property binding.
+import { filter } from 'rxjs';
+import { highlightedStateTrigger } from '../animations';
+
+//         Transições entre estados
+// Utilizar o método transition para animar uma transição entre estados;
+// Aplicar estilos temporários durante a transição;
+// Controlar a duração da animação através do método animate;
+// Exportar animações e importá-las nos metadados do componente.
 @Component({
   selector: 'app-lista-tarefas',
   templateUrl: './lista-tarefas.component.html',
   styleUrls: ['./lista-tarefas.component.css'],
-  animations: [
-    trigger('highlightedState', [
-      state(
-        //modulo de animacao
-        'default',
-        style({
-          // modulo de animacao
-          border: '2px solid #B2B6FF',
-        })
-      ),
-      state(
-        'highlighted',
-        style({
-          border: '4px solid #B2B6FF',
-          filter: ' brightness(85%)',
-        })
-      ),
-    ]),
-  ],
+  animations: [highlightedStateTrigger],
 })
 export class ListaTarefasComponent implements OnInit {
   listaTarefas: Tarefa[] = [];
