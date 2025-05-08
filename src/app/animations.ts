@@ -33,3 +33,43 @@ export const highlightedStateTrigger = trigger('highlightedState', [
     animate(200),
   ]),
 ]);
+
+// modelo trocado pelo status void que siguinifica vazio
+// export const shownStateTrigger = trigger('shownState', [
+//   state('notShown', style({})),
+//   state('shown', style({})),
+//   transition('notShown => shown', [
+//     style({
+//       opacity: 0,
+//     }),
+//     animate(
+//       300,
+//       style({
+//         opacity: 1,
+//       })
+//     ),
+//   ]),
+// ]);
+
+export const shownStateTrigger = trigger('shownState', [
+  state('shown', style({})),
+  transition('void => shown', [
+    style({
+      opacity: 0,
+    }),
+    animate(
+      3000,
+      style({
+        opacity: 1,
+      })
+    ),
+  ]),
+  transition('shown => void', [
+    animate(
+      300,
+      style({
+        opacity: 0,
+      })
+    ),
+  ]),
+]);
