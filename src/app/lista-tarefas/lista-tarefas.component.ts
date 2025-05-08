@@ -8,11 +8,10 @@ import { Tarefa } from '../interface/tarefa';
 import { filter } from 'rxjs';
 import { highlightedStateTrigger, shownStateTrigger } from '../animations';
 
-//         Transições entre estados
-// Utilizar o método transition para animar uma transição entre estados;
-// Aplicar estilos temporários durante a transição;
-// Controlar a duração da animação através do método animate;
-// Exportar animações e importá-las nos metadados do componente.
+//         Animando formulario
+// Aplicar animações em elementos que não estão anexados ao DOM;
+// Utilizar os estados void e coringa;
+// Melhorar o código com os alias :enter e :leave.
 @Component({
   selector: 'app-lista-tarefas',
   templateUrl: './lista-tarefas.component.html',

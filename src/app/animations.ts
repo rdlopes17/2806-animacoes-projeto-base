@@ -34,26 +34,56 @@ export const highlightedStateTrigger = trigger('highlightedState', [
   ]),
 ]);
 
-// modelo trocado pelo status void que siguinifica vazio
 // export const shownStateTrigger = trigger('shownState', [
-//   state('notShown', style({})),
 //   state('shown', style({})),
-//   transition('notShown => shown', [
+//   transition('void => shown', [
 //     style({
 //       opacity: 0,
 //     }),
 //     animate(
-//       300,
+//       3000,
 //       style({
 //         opacity: 1,
 //       })
 //     ),
 //   ]),
+//   transition('shown => void', [
+//     animate(
+//       300,
+//       style({
+//         opacity: 0,
+//       })
+//     ),
+//   ]),
 // ]);
 
+//modelo com o uso de status coringa *
+export const shownStateTrigger2 = trigger('shownState', [
+  transition('void => *', [
+    style({
+      opacity: 0,
+    }),
+    animate(
+      300,
+      style({
+        opacity: 1,
+      })
+    ),
+  ]),
+  transition('* => void', [
+    animate(
+      300,
+      style({
+        opacity: 0,
+      })
+    ),
+  ]),
+]);
+
+//modelo usando para renderizar modelos condicionais usando NgIf ou listas usando NgFor
+// modelo de entrada =(enter) e saida = (leave) do DOM
 export const shownStateTrigger = trigger('shownState', [
-  state('shown', style({})),
-  transition('void => shown', [
+  transition(':enter', [
     style({
       opacity: 0,
     }),
@@ -64,7 +94,7 @@ export const shownStateTrigger = trigger('shownState', [
       })
     ),
   ]),
-  transition('shown => void', [
+  transition(':leave', [
     animate(
       300,
       style({
