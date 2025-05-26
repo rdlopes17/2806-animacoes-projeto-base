@@ -1,5 +1,6 @@
 import {
   animate,
+  keyframes,
   state,
   style,
   transition,
@@ -80,17 +81,77 @@ export const shownStateTrigger = trigger('shownState', [
       })
     ),
   ]),
-  
 ]);
 
 export const checkButtonTrigger = trigger('checkButton', [
   transition('* => checked', [
-    animate('400ms ease-in', style({
-      transform: 'scale(0.4)'
-    }))
-  ])
-])
+    animate(
+      '400ms ease-in',
+      style({
+        transform: 'scale(0.4)',
+      })
+    ),
+  ]),
+]);
 
+// modelo com o uso do backgoundColor
+// export const filterTrigger = trigger('filterAnimation', [
+//   transition(':enter', [
+//     style({ opacity: 0, width: 0 }),
+//     animate(
+//       '2000ms ease-out',
+//       keyframes([
+//         style({ offset: 0, opacity: 0, width: 0 }),
+//         style({
+//           offset: 0.5,
+//           opacity: 0.5,
+//           width: '*',
+//           backgroundColor: 'lightgreen',
+//         }),
+//         style({
+//           offset: 1,
+//           opacity: 1,
+//           width: '*',
+//           backgroundColor: 'lighblue',
+//         }),
+//       ])
+//     ),
+//     transition(':leave', [
+//       animate('400ms ease-out', style({ opacity: 0, width: 0 })),
+//     ]),
+//   ]),
+// ]);
+
+// modelo com o uso do cubic-bezier()
+export const filterTrigger = trigger('filterAnimation', [
+  transition(':enter', [
+    style({ opacity: 0, width: 0 }),
+    animate(
+      '2000ms ease-out',
+      keyframes([
+        style({ offset: 0, opacity: 0, width: 0 }),
+        style({
+          offset: 0.5,
+          opacity: 0.5,
+          width: '*',
+        }),
+        style({
+          offset: 1,
+          opacity: 1,
+          width: '*',
+        }),
+      ])
+    ),
+    transition(':leave', [
+      animate(
+        '400ms cubic-bezier(.13,.9,.8,.1)',
+        style({ opacity: 0, width: 0 })
+      ),
+    ]),
+  ]),
+]);
+
+//https://cubic-bezier.com/#.17,.67,.83,.67
 
 // trigger() - inicia a animação e serve como um contêiner para todas as outras chamadas de função de animação. O template é vinculado ao nome do trigger, que é declarado como primeiro argumento da função. Usa sintaxe de matriz.
 
