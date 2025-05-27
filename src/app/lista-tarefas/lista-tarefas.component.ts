@@ -9,15 +9,13 @@ import { filter } from 'rxjs';
 import {
   checkButtonTrigger,
   filterTrigger,
+  flyInOutTrigger,
+  formButtonTrigger,
   highlightedStateTrigger,
   shownStateTrigger,
 } from '../animations';
 
-//    Busca animada com Keyframes, offset e cubic-bezier 
-// Criar um campo para filtrar tarefas pela descrição;
-// Adicionar uma animação para o filtro;
-// Utilizar keyframes e offset para criar transições suaves;
-// Acrescentar a função cubic-bezier para personalizar a animação
+//   Botão animado com query e group
 @Component({
   selector: 'app-lista-tarefas',
   templateUrl: './lista-tarefas.component.html',
@@ -27,11 +25,13 @@ import {
     shownStateTrigger,
     checkButtonTrigger,
     filterTrigger,
+    formButtonTrigger,
+    flyInOutTrigger,
   ],
 })
 export class ListaTarefasComponent implements OnInit {
   listaTarefas: Tarefa[] = [];
-  formAberto: boolean = false;
+  formAberto: boolean = true;
   categoria: string = '';
   validado: boolean = false;
   indexTarefa = -1;
@@ -43,8 +43,8 @@ export class ListaTarefasComponent implements OnInit {
     id: [0],
     descricao: ['', Validators.required],
     statusFinalizado: [false, Validators.required],
-    categoria: ['', Validators.required],
-    prioridade: ['', Validators.required],
+    categoria: ['Casa', Validators.required],
+    prioridade: ['Alta', Validators.required],
   });
 
   constructor(
