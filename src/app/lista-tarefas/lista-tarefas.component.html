@@ -4,7 +4,8 @@
   </div>
   <form
     @shownState
-     [@formButtonTrigger]="formulario.valid ? 'valid' : 'invalid'"
+    [@shakeAnimation]="formulario.value"
+    [@formButton]="formulario.valid ? 'valid' : 'invalid'"
     class="formulario ff-prompt"
     [formGroup]="formulario"
     *ngIf="formAberto"
@@ -25,7 +26,7 @@
       formControlName="prioridade"
       [ngClass]="campoValidado('prioridade')"
     >
-      <option disabled value="">Selecione</option>
+      <option value="">Selecione</option>
       <option value="Alta">Alta</option>
       <option value="Normal">Normal</option>
       <option value="Baixa">Baixa</option>
@@ -38,7 +39,7 @@
       formControlName="categoria"
       [ngClass]="campoValidado('categoria')"
     >
-      <option disabled value="">Selecione</option>
+      <option value="">Selecione</option>
       <option value="Casa">Casa</option>
       <option value="Trabalho">Trabalho</option>
       <option value="Estudos">Estudos</option>
@@ -47,6 +48,7 @@
     </app-mensagem>
     <div class="botoes-form">
       <button
+        id="botao-salvar"
         (click)="salvarTarefa()"
         class="botao-form"
         [ngClass]="habilitarBotao()"
@@ -71,8 +73,8 @@
   <div class="busca">
     <p class="ff-prompt">Procurando o que fazer?</p>
     <input
-      type="search"
       id="campo-busca"
+      type="search"
       placeholder="Busque por uma tarefa"
       [(ngModel)]="campoBusca"
       (keyup)="filtrarTarefasPorDescricao(campoBusca)"
@@ -129,5 +131,7 @@
   </div>
 </section>
 <ng-template #semTarefas>
-  <p  @flyInOut class="ng-template ff-prompt">Olá! Ainda não há tarefas por aqui! :)</p>
+  <p @flyInOut class="ng-template ff-prompt">
+    Olá! Ainda não há tarefas por aqui! :)
+  </p>
 </ng-template>

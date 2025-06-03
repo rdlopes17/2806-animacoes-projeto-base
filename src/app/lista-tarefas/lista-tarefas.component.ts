@@ -4,14 +4,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { TarefaService } from 'src/app/service/tarefa.service';
 import { Tarefa } from '../interface/tarefa';
-
-import { filter } from 'rxjs';
 import {
   checkButtonTrigger,
   filterTrigger,
   flyInOutTrigger,
   formButtonTrigger,
   highlightedStateTrigger,
+  shakeTrigger,
   shownStateTrigger,
 } from '../animations';
 
@@ -27,24 +26,25 @@ import {
     filterTrigger,
     formButtonTrigger,
     flyInOutTrigger,
+    shakeTrigger,
   ],
 })
 export class ListaTarefasComponent implements OnInit {
   listaTarefas: Tarefa[] = [];
-  formAberto: boolean = true;
+  formAberto: boolean = false;
   categoria: string = '';
   validado: boolean = false;
-  indexTarefa = -1;
-  id!: number;
-  campoBusca: string = '';
+  indexTarefa: number = -1;
+  id: number = 0;
+  campoBusca = '';
   tarefasFiltradas: Tarefa[] = [];
 
   formulario: FormGroup = this.fomBuilder.group({
     id: [0],
     descricao: ['', Validators.required],
     statusFinalizado: [false, Validators.required],
-    categoria: ['Casa', Validators.required],
-    prioridade: ['Alta', Validators.required],
+    categoria: ['', Validators.required],
+    prioridade: ['', Validators.required],
   });
 
   constructor(
@@ -58,11 +58,11 @@ export class ListaTarefasComponent implements OnInit {
       this.listaTarefas = listaTarefas;
       this.tarefasFiltradas = listaTarefas;
     });
-    return this.listaTarefas;
+    return this.tarefasFiltradas;
   }
 
   filtrarTarefasPorDescricao(descricao: string) {
-    this.campoBusca = descricao.trim().toLowerCase(); // removendo espaços e definido letras minusculas
+    this.campoBusca = descricao.trim().toLowerCase();// removendo espaços e definido letras minusculas
     if (descricao) {
       this.tarefasFiltradas = this.listaTarefas.filter((tarefa) =>
         tarefa.descricao.toLowerCase().includes(this.campoBusca)
