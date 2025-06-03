@@ -14,7 +14,10 @@ import {
   shownStateTrigger,
 } from '../animations';
 
-//   Botão animado com query e group
+//   Chamando a atencao com query e keyframes
+// Usar classes com o método query;
+// Utilizar keyframes para criar uma animação “em etapas”;
+// Adicionar a propriedade optional: true para evitar erros nas animações.
 @Component({
   selector: 'app-lista-tarefas',
   templateUrl: './lista-tarefas.component.html',

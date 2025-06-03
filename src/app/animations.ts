@@ -288,6 +288,8 @@ export const shakeTrigger = trigger('shakeAnimation', [
   ]),
 ]);
 
+//optional - caso não aja elemntos correspondentes a consulta feita no query ele garante o funcionamento da animação
+
 // query() -  permite buscar elementos específicos no DOM para aplicar animações
 
 // group() - executa animações simultaneamente, otimizando a performance e a organização do código.
