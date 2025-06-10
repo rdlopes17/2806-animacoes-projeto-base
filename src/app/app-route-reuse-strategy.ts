@@ -1,8 +1,10 @@
-import {ActivatedRouteSnapshot, BaseRouteReuseStrategy} from '@angular/router';
+// import {ActivatedRouteSnapshot, BaseRouteReuseStrategy} from '@angular/router';
 
-export class AppRouteReuseStrategy extends BaseRouteReuseStrategy {
+// export class AppRouteReuseStrategy extends BaseRouteReuseStrategy {
 
-  public override shouldReuseRoute(future: ActivatedRouteSnapshot, curr: ActivatedRouteSnapshot): boolean {
-    return future.data['reuseComponent'];
-  }
-}
+//   public override shouldReuseRoute(future: ActivatedRouteSnapshot, curr: ActivatedRouteSnapshot): boolean {
+//     return future.data['reuseComponent'];
+//   }
+// }
+
+// Deletado para uso de recarregamento atraves do rxjs.
