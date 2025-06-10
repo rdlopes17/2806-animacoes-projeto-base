@@ -15,6 +15,9 @@ import {
 } from '../animations';
 import { Subscription } from 'rxjs';
 
+// Refatorando com RxJS
+// Refatorar o projeto modificando a estratégia de recarregamento;
+// Utilizar o BehaviorSubject para gerenciar o estado da aplicação.
 @Component({
   selector: 'app-lista-tarefas',
   templateUrl: './lista-tarefas.component.html',
@@ -39,6 +42,7 @@ export class ListaTarefasComponent implements OnInit {
   campoBusca = '';
   tarefasFiltradas: Tarefa[] = [];
   tarefasSubscription: Subscription = new Subscription();
+  estadoBotao = 'unchecked';
 
   formulario: FormGroup = this.fomBuilder.group({
     id: [0],
@@ -127,7 +131,7 @@ export class ListaTarefasComponent implements OnInit {
 
   excluirTarefa(tarefa: Tarefa) {
     if (tarefa.id) {
-      this.service.excluir(tarefa.id)
+      this.service.excluir(tarefa.id);
     }
   }
 
@@ -180,6 +184,11 @@ export class ListaTarefasComponent implements OnInit {
   finalizarTarefa(tarefa: Tarefa) {
     this.id = tarefa.id;
     this.service.atualizarStatusTarefa(tarefa);
+    if (tarefa.statusFinalizado == true) {
+      this.estadoBotao = 'checked';
+    } else {
+      this.estadoBotao = 'unchecked';
+    }
   }
 
   // modelo refatorado
