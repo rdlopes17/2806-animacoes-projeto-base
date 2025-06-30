@@ -10,14 +10,14 @@ import {
   flyInOutTrigger,
   formButtonTrigger,
   highlightedStateTrigger,
+  listStatetrigger,
   shakeTrigger,
   shownStateTrigger,
 } from '../animations';
 import { Subscription } from 'rxjs';
 
-// Refatorando com RxJS
-// Refatorar o projeto modificando a estratégia de recarregamento;
-// Utilizar o BehaviorSubject para gerenciar o estado da aplicação.
+//Criar animações em sequência com o Stagger;
+//Desabilitar animações no projeto.
 @Component({
   selector: 'app-lista-tarefas',
   templateUrl: './lista-tarefas.component.html',
@@ -30,6 +30,7 @@ import { Subscription } from 'rxjs';
     formButtonTrigger,
     flyInOutTrigger,
     shakeTrigger,
+    listStatetrigger
   ],
 })
 export class ListaTarefasComponent implements OnInit {

@@ -3,6 +3,7 @@ import {
   group,
   keyframes,
   query,
+  stagger,
   state,
   style,
   transition,
@@ -287,6 +288,35 @@ export const shakeTrigger = trigger('shakeAnimation', [
     ),
   ]),
 ]);
+
+
+export const listStatetrigger = trigger('listSatate', [
+  transition('* => *', [//animando com estado coringa de qualquer estado para qualquer estado 
+    query(':enter', [// utilizando o alias enter para animar a entrada ou a saida de um elemento, alem de seletores convecionais.
+     style({
+        opacity: 0,
+        transform: 'translateX(-100%)',//movimento no eixo X
+      }),
+      stagger(200, [//adiciona um atraso entre as animacoes dos elementos
+        animate('500ms ease-out', keyframes([
+          style({
+            opacity: 1,
+            transform: 'translateX(15%)',
+            offset: 0.4//definindo posicao desses stilos na animacao
+          }),
+          style({
+            opacity: 1,
+            transform: 'translateX(0)',
+            offset: 1
+          })
+        ]))
+      ])
+    ], {optional: true})//garante o funcionamento da animacao.
+  ])
+])
+
+
+//stagger - adiciona um  delay (atraso) entre as animacoes dos elementos
 
 //optional - caso não aja elemntos correspondentes a consulta feita no query ele garante o funcionamento da animação
 
